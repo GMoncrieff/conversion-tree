@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - Land Cover Change Decision Tool</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-step completed">Preamble</div>
+        <div class="progress-step" id="demand-progress">Demand</div>
+        <div class="progress-step" id="vulnerability-progress">Vulnerability</div>
+        <div class="progress-step">Recommendation</div>
+    </div>
+
+    <main class="container">
+        <h1 id="result-title">Result</h1>
+        
+        <div class="result-card">
+            <div class="result-code" id="result-code"></div>
+            <div class="result-action" id="result-action"></div>
+            <div class="result-description" id="result-description"></div>
+        </div>
+
+        <div class="navigation">
+            <button id="continue-btn" class="btn btn-primary">Continue</button>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+        
+        // Get result from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const treeType = urlParams.get('tree');
+        const resultId = urlParams.get('id');
+
+        // Update progress bar
+        if (treeType === 'demand') {
+            document.getElementById('demand-progress').classList.add('completed');
+        } else if (treeType === 'vulnerability') {
+            document.getElementById('demand-progress').classList.add('completed');
+            document.getElementById('vulnerability-progress').classList.add('completed');
+        }
+
+        // Load result data
+        fetch('data/results.json')
+            .then(response => response.json())
+            .then(data => {
+                const result = data[resultId];
+                if (result) {
+                    document.getElementById('result-title').textContent = `${treeType.charAt(0).toUpperCase() + treeType.slice(1)} Assessment Result`;
+                    document.getElementById('result-code').textContent = resultId;
+                    document.getElementById('result-action').textContent = result.action;
+                    document.getElementById('result-description').textContent = result.description;
+                }
+            });
+
+        // Handle continue button
+        document.getElementById('continue-btn').addEventListener('click', () => {
+            if (treeType === 'demand') {
+                window.location.href = 'vulnerability-preamble.html';
+            } else if (treeType === 'vulnerability') {
+                window.location.href = 'recommendation.html';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+{
+  "inputs": {
+    "vulnerability": ["V1", "V2", "V3", "V4"],
+    "demand": ["D1", "D2", "D3", "D4"]
+  },
+  "rules": [
+    {
+      "if": {
+        "vulnerability": ["V1", "V2", "V3"]
+      },
+      "recommend_simple": [
+        "MOLUSCE software"
+      ],
+      "recommend_intermediate": [
+        "TerrSet software"
+      ],
+      "recommend_advanced": [
+        "R lulcc package"
+      ]
+    },
+    {
+      "if": {
+        "vulnerability": ["V4"],
+        "demand": ["D1", "D2"]
+      },
+      "recommend_simple": [
+        "MOLUSCE software"
+      ],
+      "recommend_intermediate": [
+        "TerrSet software"
+      ]
+    },
+    {
+      "if": {
+        "vulnerability": ["V4"],
+        "demand": ["D3", "D4"]
+      },
+      "recommend_simple": [
+        "MOLUSCE software"
+      ],
+      "recommend_intermediate": [
+        "TerrSet software"
+      ],
+      "recommend_advanced": [
+        "R lulcc package"
+      ]
+    }
+  ]
+}

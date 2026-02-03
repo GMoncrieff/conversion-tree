@@ -1,0 +1,34 @@
+{
+  "D1": {
+    "action": "Use existing estimate",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Your existing estimate of land cover change is appropriate for your analysis. This approach leverages historical data that accurately reflects future trends. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  },
+  "D2": {
+    "action": "Use jurisdictional estimates from IPCC RCP scenarios",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. IPCC Representative Concentration Pathway (RCP) scenarios provide standardized projections for future land use change. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. These scenarios account for different climate and socioeconomic futures."
+  },
+  "D3": {
+    "action": "Use a local/regional land cover map to estimate rates of change",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Local or regional land cover maps provide detailed, context-specific information about historical change patterns. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. This approach offers higher accuracy for your specific area of interest."
+  },
+  "D4": {
+    "action": "Use a global land cover map to estimate rates of change",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Global land cover datasets provide consistent, worldwide coverage when local data is unavailable. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. While less detailed than regional maps, they offer valuable baseline information."
+  },
+  "V1": {
+    "action": "Use existing vulnerability map",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Your existing vulnerability map is suitable for identifying areas at risk of land cover change. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. This map can be directly integrated into your analysis workflow."
+  },
+  "V2": {
+    "action": "Create a custom vulnerability map based on expert knowledge of drivers of future change",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Expert knowledge of future change drivers allows for a forward-looking vulnerability assessment. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. This approach incorporates anticipated changes in land use pressures and socioeconomic factors."
+  },
+  "V3": {
+    "action": "Use a local/regional land cover map",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Local or regional land cover maps can be analyzed to identify patterns of historical change as a proxy for vulnerability. Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. This method assumes that areas of past change are vulnerable to future change."
+  },
+  "V4": {
+    "action": "Use a global land cover map",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Global land cover datasets provide broad-scale patterns of change that can inform vulnerability assessment. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. While less precise than local data, they offer consistent global coverage."
+  }
+}

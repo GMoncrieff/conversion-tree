@@ -1,0 +1,35 @@
+{
+  "demand": {
+    "question": "Do you have an estimate of the total amount of land cover change over your area of interest?",
+    "yes": {
+      "outcome": {
+          "id": "D1",
+          "action": "Use existing estimate"
+        }
+    },
+    "no": {
+      "question": "Is past land cover change a good proxy for the amount of future change (same rate of change)?",
+      "no": {
+        "outcome": {
+          "id": "D2",
+          "action": "Use jurisdictional estimates from IPCC RCP scenarios"
+        }
+      },
+      "yes": {
+        "question": "Do you have a national/regional land cover map for multiple years?",
+        "yes": {
+          "outcome": {
+            "id": "D3",
+            "action": "Use a local/regional land cover map to estimate rates of change"
+          }
+        },
+        "no": {
+          "outcome": {
+            "id": "D4",
+            "action": "Use a global land cover map to estimate rates of change"
+          }
+        }
+      }
+    }
+  }
+}

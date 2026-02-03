@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Recommendation - Land Cover Change Decision Tool</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-step completed">Preamble</div>
+        <div class="progress-step completed">Demand</div>
+        <div class="progress-step completed">Vulnerability</div>
+        <div class="progress-step active">Recommendation</div>
+    </div>
+
+    <main class="container">
+        <h1>Final Recommendation</h1>
+        
+        <div class="recommendation-card">
+            <h2>Recommended Software</h2>
+            <div id="software-list" class="software-list"></div>
+        </div>
+
+        <div class="summary-section collapsible">
+            <button class="collapsible-header" id="summary-toggle">
+                <h2>Your Assessment Summary</h2>
+                <span class="toggle-icon">▼</span>
+            </button>
+            <div class="collapsible-content" id="summary-content">
+                <div class="tree-summary">
+                    <div class="tree-column">
+                        <h3>Demand Assessment</h3>
+                        <div id="demand-tree-viz" class="tree-visualization"></div>
+                    </div>
+                    <div class="tree-column">
+                        <h3>Vulnerability Assessment</h3>
+                        <div id="vulnerability-tree-viz" class="tree-visualization"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="btn btn-secondary" onclick="window.location.href='index.html'">Start Over</button>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+            
+            // Get selections from sessionStorage
+            const demandResult = sessionStorage.getItem('demandResult');
+            const vulnerabilityResult = sessionStorage.getItem('vulnerabilityResult');
+            const demandPath = JSON.parse(sessionStorage.getItem('demandPath') || '[]');
+            const vulnerabilityPath = JSON.parse(sessionStorage.getItem('vulnerabilityPath') || '[]');
+
+            console.log('Demand Result:', demandResult);
+            console.log('Vulnerability Result:', vulnerabilityResult);
+
+            // Load recommendation rules and explanations
+            Promise.all([
+                fetch('data/recommendations.json').then(r => r.json()),
+                fetch('data/software-explanations.json').then(r => r.json())
+            ]).then(([recommendationData, explanationsData]) => {
+                console.log('Recommendation Data:', recommendationData);
+                console.log('Explanations Data:', explanationsData);
+                
+                const recommendations = findRecommendation(recommendationData, vulnerabilityResult, demandResult);
+                console.log('Found Recommendations:', recommendations);
+                
+                displayRecommendations(recommendations, explanationsData);
+            }).catch(error => {
+                console.error('Error loading recommendations:', error);
+            });
+            
+            // Load and visualize trees
+            Promise.all([
+                fetch('data/demand.json').then(r => r.json()),
+                fetch('data/vulnerability.json').then(r => r.json())
+            ]).then(([demandTree, vulnerabilityTree]) => {
+                visualizeTree('demand-tree-viz', demandTree, demandPath);
+                visualizeTree('vulnerability-tree-viz', vulnerabilityTree, vulnerabilityPath);
+            }).catch(error => {
+                console.error('Error loading trees:', error);
+            });
+            
+            // Collapsible summary functionality
+            document.getElementById('summary-toggle').addEventListener('click', () => {
+                const content = document.getElementById('summary-content');
+                const icon = document.querySelector('.toggle-icon');
+                
+                if (content.style.display === 'none' || content.style.display === '') {
+                    content.style.display = 'block';
+                    icon.textContent = '▲';
+                } else {
+                    content.style.display = 'none';
+                    icon.textContent = '▼';
+                }
+            });
+        });
+
+        function findRecommendation(data, vResult, dResult) {
+            for (const rule of data.rules) {
+                const vMatch = rule.if.vulnerability ? rule.if.vulnerability.includes(vResult) : true;
+                const dMatch = rule.if.demand ? rule.if.demand.includes(dResult) : true;
+                
+                if (vMatch && dMatch) {
+                    // Return recommendations grouped by difficulty level
+                    return {
+                        simple: rule.recommend_simple || [],
+                        intermediate: rule.recommend_intermediate || [],
+                        advanced: rule.recommend_advanced || []
+                    };
+                }
+            }
+            return { simple: [], intermediate: [], advanced: [] };
+        }
+
+        function displayRecommendations(recommendations, explanations) {
+            const listEl = document.getElementById('software-list');
+            
+            // Display simple recommendations
+            if (recommendations.simple && recommendations.simple.length > 0) {
+                const simpleHeader = document.createElement('div');
+                simpleHeader.className = 'difficulty-header difficulty-simple';
+                simpleHeader.textContent = 'Simple';
+                listEl.appendChild(simpleHeader);
+                
+                recommendations.simple.forEach(software => {
+                    createSoftwareItem(software, 'simple', explanations, listEl);
+                });
+            }
+            
+            // Display intermediate recommendations
+            if (recommendations.intermediate && recommendations.intermediate.length > 0) {
+                const intermediateHeader = document.createElement('div');
+                intermediateHeader.className = 'difficulty-header difficulty-intermediate';
+                intermediateHeader.textContent = 'Intermediate';
+                listEl.appendChild(intermediateHeader);
+                
+                recommendations.intermediate.forEach(software => {
+                    createSoftwareItem(software, 'intermediate', explanations, listEl);
+                });
+            }
+            
+            // Display advanced recommendations
+            if (recommendations.advanced && recommendations.advanced.length > 0) {
+                const advancedHeader = document.createElement('div');
+                advancedHeader.className = 'difficulty-header difficulty-advanced';
+                advancedHeader.textContent = 'Advanced';
+                listEl.appendChild(advancedHeader);
+                
+                recommendations.advanced.forEach(software => {
+                    createSoftwareItem(software, 'advanced', explanations, listEl);
+                });
+            }
+        }
+        
+        function createSoftwareItem(software, difficulty, explanations, container) {
+            const item = document.createElement('div');
+            item.className = `software-item-detailed difficulty-${difficulty}`;
+            
+            const title = document.createElement('h3');
+            title.className = 'software-title';
+            title.textContent = software;
+            
+            const explanation = explanations[software];
+            if (explanation) {
+                const description = document.createElement('p');
+                description.className = 'software-description';
+                description.textContent = explanation.description;
+                
+                const why = document.createElement('div');
+                why.className = 'software-why';
+                why.innerHTML = `<strong>Why this recommendation:</strong> ${explanation.why}`;
+                
+                item.appendChild(title);
+                item.appendChild(description);
+                item.appendChild(why);
+            } else {
+                item.appendChild(title);
+            }
+            
+            container.appendChild(item);
+        }
+
+        function visualizeTree(containerId, treeData, selectedPath) {
+            const container = document.getElementById(containerId);
+            const rootKey = Object.keys(treeData)[0];
+            const root = treeData[rootKey];
+            
+            renderNode(container, root, selectedPath, 0);
+        }
+
+        function renderNode(container, node, path, depth) {
+            const nodeDiv = document.createElement('div');
+            nodeDiv.className = 'tree-node';
+            nodeDiv.style.marginLeft = `${depth * 20}px`;
+            
+            if (node.question) {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'tree-question';
+                
+                // Check if this question is in the selected path
+                const isSelected = path.some(p => p.question === node.question);
+                if (isSelected) {
+                    questionDiv.classList.add('selected');
+                }
+                
+                questionDiv.textContent = node.question;
+                nodeDiv.appendChild(questionDiv);
+                container.appendChild(nodeDiv);
+                
+                // Render yes/no branches
+                if (node.yes) {
+                    const yesLabel = document.createElement('div');
+                    yesLabel.className = 'tree-branch-label';
+                    yesLabel.textContent = '↳ Yes';
+                    yesLabel.style.marginLeft = `${(depth + 1) * 20}px`;
+                    
+                    // Check if yes was selected
+                    const yesSelected = path.some(p => p.question === node.question && p.answer === 'yes');
+                    if (yesSelected) {
+                        yesLabel.classList.add('selected');
+                    }
+                    
+                    container.appendChild(yesLabel);
+                    renderNode(container, node.yes, path, depth + 1);
+                }
+                
+                if (node.no) {
+                    const noLabel = document.createElement('div');
+                    noLabel.className = 'tree-branch-label';
+                    noLabel.textContent = '↳ No';
+                    noLabel.style.marginLeft = `${(depth + 1) * 20}px`;
+                    
+                    // Check if no was selected
+                    const noSelected = path.some(p => p.question === node.question && p.answer === 'no');
+                    if (noSelected) {
+                        noLabel.classList.add('selected');
+                    }
+                    
+                    container.appendChild(noLabel);
+                    renderNode(container, node.no, path, depth + 1);
+                }
+            } else if (node.outcome) {
+                const outcomeDiv = document.createElement('div');
+                outcomeDiv.className = 'tree-outcome';
+                
+                // Check if this outcome is the final result
+                const isSelected = path.some(p => p.outcome === node.outcome.id);
+                if (isSelected) {
+                    outcomeDiv.classList.add('selected');
+                }
+                
+                outcomeDiv.innerHTML = `<strong>${node.outcome.id}</strong>: ${node.outcome.action}`;
+                nodeDiv.appendChild(outcomeDiv);
+                container.appendChild(nodeDiv);
+            }
+        }
+    </script>
+</body>
+</html>

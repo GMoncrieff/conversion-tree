@@ -1,0 +1,14 @@
+{
+  "TerrSet software": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. TerrSet is a comprehensive geospatial monitoring and modeling software system. <a href='https://www.clarklabs.org/terrset/' target='_blank'>Visit the TerrSet website</a> for more information. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "why": "This recommendation is based on your assessment results indicating the need for robust spatial modeling capabilities. <a href='https://example.com/terrset-guide' target='_blank'>View the TerrSet user guide</a> to learn more. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. TerrSet provides advanced tools for land change analysis and prediction modeling that align with your data availability and project requirements."
+  },
+  "MOLUSCE software": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. MOLUSCE (Modules for Land Use Change Evaluation) is a QGIS plugin for land use change analysis. <a href='https://github.com/nextgis/molusce' target='_blank'>View MOLUSCE on GitHub</a>. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+    "why": "Based on your responses, MOLUSCE is recommended because it offers accessible, open-source tools for land cover change modeling. <a href='https://nextgis.com/blog/molusce/' target='_blank'>Read the MOLUSCE tutorial</a> to get started. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. It integrates well with existing GIS workflows and provides the functionality needed for your specific vulnerability and demand assessment approach."
+  },
+  "R lulcc package": {
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. The lulcc package in R provides a framework for land use and land cover change modeling. <a href='https://cran.r-project.org/web/packages/lulcc/index.html' target='_blank'>View lulcc on CRAN</a>. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.",
+    "why": "Your assessment indicates that the R lulcc package is most suitable for your needs. <a href='https://cran.r-project.org/web/packages/lulcc/vignettes/lulcc.html' target='_blank'>Read the lulcc vignette</a> for documentation. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. This package offers flexibility for custom modeling approaches and works well with global land cover datasets, matching your data availability and technical requirements."
+  }
+}
