@@ -9,6 +9,7 @@
 <body>
     <div class="progress-bar">
         <div class="progress-step completed">Preamble</div>
+        <div class="progress-step" id="pathway-progress">Pathway</div>
         <div class="progress-step" id="demand-progress">Demand</div>
         <div class="progress-step" id="vulnerability-progress">Vulnerability</div>
         <div class="progress-step">Recommendation</div>
@@ -40,9 +41,13 @@
         const resultId = urlParams.get('id');
 
         // Update progress bar
-        if (treeType === 'demand') {
+        if (treeType === 'pathway') {
+            document.getElementById('pathway-progress').classList.add('completed');
+        } else if (treeType === 'demand') {
+            document.getElementById('pathway-progress').classList.add('completed');
             document.getElementById('demand-progress').classList.add('completed');
         } else if (treeType === 'vulnerability') {
+            document.getElementById('pathway-progress').classList.add('completed');
             document.getElementById('demand-progress').classList.add('completed');
             document.getElementById('vulnerability-progress').classList.add('completed');
         }
@@ -62,7 +67,10 @@
 
         // Handle continue button
         document.getElementById('continue-btn').addEventListener('click', () => {
-            if (treeType === 'demand') {
+            if (treeType === 'pathway') {
+                // P3 continues to demand assessment
+                window.location.href = 'demand-preamble.html';
+            } else if (treeType === 'demand') {
                 window.location.href = 'vulnerability-preamble.html';
             } else if (treeType === 'vulnerability') {
                 window.location.href = 'recommendation.html';

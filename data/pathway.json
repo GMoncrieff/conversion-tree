@@ -1,0 +1,44 @@
+{
+  "pathway": {
+    "question": "Are you estimating future conversion or degradation?",
+    "degradation": {
+      "question": "Is past degradation a good proxy for where future degradation will occur (same drivers)?",
+      "no": {
+        "outcome": {
+          "id": "P1",
+          "action": "Use Global Conversion Risk Index"
+        }
+      },
+      "yes": {
+        "outcome": {
+          "id": "P2",
+          "action": "Use Global Human Modification Forecast"
+        }
+      }
+    },
+    "conversion": {
+      "question": "Is the region of interest global/continental or national/regional?",
+      "national/regional": {
+        "outcome": {
+          "id": "P3",
+          "action": "Create a custom conversion risk forecast"
+        }
+      },
+      "global/continental": {
+        "question": "Do you want to assume historical patterns of change will continue or do you want to explore scenarios?",
+        "historical patterns": {
+          "outcome": {
+            "id": "P4",
+            "action": "Use a global map based on past land cover change"
+          }
+        },
+        "scenarios": {
+          "outcome": {
+            "id": "P5",
+            "action": "Use a global map driven by IPCC RCP scenarios"
+          }
+        }
+      }
+    }
+  }
+}

@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demand Assessment - Land Cover Change Decision Tool</title>
+    <title>Pathway Assessment</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <div class="progress-bar">
         <div class="progress-step completed">Preamble</div>
-        <div class="progress-step completed">Pathway</div>
-        <div class="progress-step active">Demand</div>
+        <div class="progress-step active">Pathway</div>
+        <div class="progress-step">Demand</div>
         <div class="progress-step">Vulnerability</div>
         <div class="progress-step">Recommendation</div>
     </div>
 
     <main class="container">
-        <h1>Demand Assessment</h1>
-        
-        <div id="tree-container" class="tree-container">
-            <!-- Tree questions will be rendered here by JavaScript -->
-        </div>
-
-        <div class="navigation">
-            <button id="back-btn" class="btn btn-secondary" style="display: none;">Back</button>
-        </div>
+        <div id="tree-container"></div>
     </main>
 
-    <script src="js/tree-engine.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/tree-engine.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add('loaded');
             
-            const treeEngine = new TreeEngine('tree-container', 'data/demand.json', 'demand');
+            const treeEngine = new TreeEngine('tree-container', 'data/pathway.json', 'pathway');
             treeEngine.init();
         });
     </script>

@@ -1,12 +1,173 @@
 {
   "inputs": {
     "vulnerability": ["V1", "V2", "V3", "V4"],
-    "demand": ["D1", "D2", "D3", "D4"]
+    "demand": ["D1", "D2", "D3", "D4"],
+    "pathway": ["P1", "P2", "P3", "P4", "P5"]
   },
   "rules": [
     {
       "if": {
-        "vulnerability": ["V1", "V2", "V3"]
+        "pathway": ["P1"]
+      },
+      "recommend_simple": [
+        "Conversion Pressure Index"
+      ],
+      "explanation": "You are modeling degradation where past patterns are not a reliable predictor of future risk. The Global Conversion Pressure Index provides a ready-to-use, globally consistent assessment of conversion threat that does not require custom modeling. This pre-computed dataset is ideal when you need a standardized approach without the capacity to develop custom forecasts."
+    },
+    {
+      "if": {
+        "pathway": ["P2"]
+      },
+      "recommend_simple": [
+        "Human Modification Index"
+      ],
+      "explanation": "You are modeling degradation where past patterns provide a reliable indicator of future risk. The Global Human Modification forecast extrapolates historical trends in human pressure, providing a ready-to-use dataset that captures gradual intensification of impacts. This approach is appropriate when you expect existing drivers to persist and need a globally consistent product without custom modeling."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V1"],
+        "demand": ["D1"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You have an existing vulnerability map and an existing demand estimate. These custom inputs require flexible, script-based modeling tools that can accommodate pre-computed demand and vulnerability surfaces. The R lulcc package and Dinamica EGO are recommended because they allow you to directly input your existing data and perform spatial allocation without requiring you to derive these components within the software. Both tools provide the flexibility needed to work with custom inputs while offering different levels of sophistication in spatial pattern modeling."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V1"],
+        "demand": ["D2"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You have an existing vulnerability map and will use IPCC RCP scenario-based demand estimates. These custom inputs require flexible, script-based tools that can integrate external demand projections with your vulnerability surface. The R lulcc package and Dinamica EGO are recommended because they provide the scripting flexibility to incorporate scenario-based demand while using your existing vulnerability map for spatial allocation."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V1"],
+        "demand": ["D3"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You have an existing vulnerability map and will derive demand from local/regional land cover maps. These custom inputs require flexible, script-based tools that can handle external demand calculations and pre-existing vulnerability surfaces. The R lulcc package and Dinamica EGO are recommended because they provide the backend flexibility to integrate your custom demand estimates with your vulnerability map without requiring GUI-based workflows."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V1"],
+        "demand": ["D4"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You have an existing vulnerability map and will derive demand from global land cover maps. These custom inputs require flexible, script-based tools that can integrate externally calculated demand with your pre-existing vulnerability surface. The R lulcc package and Dinamica EGO are recommended because they provide the scripting flexibility needed to work with custom demand estimates and vulnerability maps, particularly when working with global datasets that may require efficient handling of large spatial extents."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V2"],
+        "demand": ["D1"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will create a custom vulnerability map based on expert knowledge and have an existing demand estimate. This combination of custom inputs requires flexible, script-based tools that can accommodate user-defined vulnerability surfaces and external demand estimates. The R lulcc package and Dinamica EGO are recommended because they provide the flexibility to integrate your custom vulnerability assessment with your existing demand, allowing you to implement expert-driven spatial allocation rules."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V2"],
+        "demand": ["D2"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will create a custom vulnerability map based on expert knowledge and use IPCC RCP scenario-based demand. Both components are custom inputs requiring flexible, script-based tools. The R lulcc package and Dinamica EGO are recommended because they provide the backend flexibility to integrate your expert-driven vulnerability assessment with scenario-based demand projections, allowing you to explore alternative futures with custom spatial allocation."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V2"],
+        "demand": ["D3"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will create a custom vulnerability map based on expert knowledge and derive demand from local/regional land cover maps. Both components require custom development, making script-based tools essential. The R lulcc package and Dinamica EGO are recommended because they provide the flexibility to integrate your expert-driven vulnerability assessment with empirically derived demand, allowing you to implement sophisticated custom modeling workflows."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V2"],
+        "demand": ["D4"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will create a custom vulnerability map based on expert knowledge and derive demand from global land cover maps. Both components are custom inputs requiring flexible, script-based tools. The R lulcc package and Dinamica EGO are recommended because they provide the backend flexibility to integrate your expert-driven vulnerability assessment with global demand estimates, particularly useful when working with large spatial extents and custom allocation rules."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V3"],
+        "demand": ["D1"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive vulnerability from local/regional land cover maps and have an existing demand estimate. The custom vulnerability derivation combined with existing demand requires flexible, script-based tools. The R lulcc package and Dinamica EGO are recommended because they provide the flexibility to integrate empirically derived vulnerability surfaces with your existing demand estimate, allowing you to implement custom spatial allocation based on historical change patterns."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V3"],
+        "demand": ["D2"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive vulnerability from local/regional land cover maps and use IPCC RCP scenario-based demand. The custom vulnerability derivation combined with scenario-based demand requires flexible, script-based tools. The R lulcc package and Dinamica EGO are recommended because they provide the backend flexibility to integrate empirically derived vulnerability with scenario projections, allowing you to explore alternative futures based on historical spatial patterns."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V3"],
+        "demand": ["D3"]
       },
       "recommend_simple": [
         "MOLUSCE software"
@@ -15,25 +176,15 @@
         "TerrSet software"
       ],
       "recommend_advanced": [
-        "R lulcc package"
-      ]
-    },
-    {
-      "if": {
-        "vulnerability": ["V4"],
-        "demand": ["D1", "D2"]
-      },
-      "recommend_simple": [
-        "MOLUSCE software"
+        "Dinamica EGO"
       ],
-      "recommend_intermediate": [
-        "TerrSet software"
-      ]
+      "explanation": "You will derive both vulnerability and demand from local/regional land cover maps. Since you're working with land cover maps directly, GUI-based tools are recommended that can handle the complete workflow from map input to forecast generation. MOLUSCE, TerrSet, and Dinamica EGO all provide graphical interfaces where you can input multi-temporal land cover maps and generate forecasts without pre-existing vulnerability or demand estimates. These tools will analyze your maps, calculate transition rates, model spatial patterns, and produce future projections within integrated environments."
     },
     {
       "if": {
-        "vulnerability": ["V4"],
-        "demand": ["D3", "D4"]
+        "pathway": ["P3"],
+        "vulnerability": ["V3"],
+        "demand": ["D4"]
       },
       "recommend_simple": [
         "MOLUSCE software"
@@ -42,8 +193,89 @@
         "TerrSet software"
       ],
       "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive vulnerability from local/regional maps and demand from global land cover maps. GUI-based tools are recommended that can handle land cover map inputs and generate complete forecasts. MOLUSCE, TerrSet, and Dinamica EGO provide graphical interfaces where you can input land cover maps from different sources (regional for vulnerability patterns, global for demand rates) and generate forecasts without pre-existing estimates. These integrated environments handle the full modeling workflow from map analysis to future projection."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V4"],
+        "demand": ["D1"]
+      },
+      "recommend_intermediate": [
         "R lulcc package"
-      ]
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive vulnerability from global land cover maps and have an existing demand estimate. The custom vulnerability derivation combined with existing demand requires flexible, script-based tools. The R lulcc package and Dinamica EGO are recommended because they provide the backend flexibility to integrate empirically derived vulnerability from global datasets with your existing demand estimate, particularly useful when working with large spatial extents."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V4"],
+        "demand": ["D2"]
+      },
+      "recommend_intermediate": [
+        "R lulcc package"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive vulnerability from global land cover maps and use IPCC RCP scenario-based demand. The custom vulnerability derivation combined with scenario-based demand requires flexible, script-based tools. The R lulcc package and Dinamica EGO are recommended because they provide the backend flexibility to integrate empirically derived vulnerability from global datasets with scenario projections, allowing you to explore alternative futures at large spatial scales."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V4"],
+        "demand": ["D3"]
+      },
+      "recommend_simple": [
+        "MOLUSCE software"
+      ],
+      "recommend_intermediate": [
+        "TerrSet software"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive vulnerability from global maps and demand from local/regional land cover maps. GUI-based tools are recommended that can handle land cover map inputs from different sources and generate complete forecasts. MOLUSCE, TerrSet, and Dinamica EGO provide graphical interfaces where you can input land cover maps (global for vulnerability patterns, regional for demand rates) and generate forecasts without pre-existing estimates. These integrated environments handle the full workflow from map analysis to future projection."
+    },
+    {
+      "if": {
+        "pathway": ["P3"],
+        "vulnerability": ["V4"],
+        "demand": ["D4"]
+      },
+      "recommend_simple": [
+        "MOLUSCE software"
+      ],
+      "recommend_intermediate": [
+        "TerrSet software"
+      ],
+      "recommend_advanced": [
+        "Dinamica EGO"
+      ],
+      "explanation": "You will derive both vulnerability and demand from global land cover maps. Since you're working with global land cover datasets, GUI-based tools are recommended that can handle large spatial extents and complete workflows. MOLUSCE, TerrSet, and Dinamica EGO provide graphical interfaces where you can input multi-temporal global land cover maps and generate forecasts without pre-existing vulnerability or demand estimates. These tools will analyze your maps, calculate transition rates, model spatial patterns, and produce future projections within integrated environments suitable for global-scale analysis."
+    },
+    {
+      "if": {
+        "pathway": ["P4"]
+      },
+      "recommend_simple": [
+        "ESRI land cover change"
+      ],
+      "explanation": "You are modeling conversion at global or continental scale and want to extrapolate historical patterns forward. The ESRI land cover change products provide ready-to-use, high-resolution (10m) global land cover time series that can be used to identify historical change patterns and project them into the future. This approach assumes business-as-usual continuation of past trends and is most appropriate for near-term projections where drivers are expected to remain relatively stable. No custom modeling is required."
+    },
+    {
+      "if": {
+        "pathway": ["P5"]
+      },
+      "recommend_simple": [
+        "Chen 2020 / Demeter"
+      ],
+      "explanation": "You are modeling conversion at global or continental scale and want to explore scenario-based futures rather than simply extrapolating past trends. The Chen 2020/Demeter dataset provides ready-to-use land use projections under multiple IPCC RCP scenarios (2.6, 4.5, 6.0, 8.5), allowing you to assess how land use might evolve under different climate policy and socioeconomic pathways. This approach is particularly valuable for long-term planning (2050-2100) and exploring the range of plausible futures. No custom modeling is required."
     }
   ]
 }

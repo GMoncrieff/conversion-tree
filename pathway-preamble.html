@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pathway Assessment - Preamble</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-step active">Preamble</div>
+        <div class="progress-step">Pathway</div>
+        <div class="progress-step">Demand</div>
+        <div class="progress-step">Vulnerability</div>
+        <div class="progress-step">Recommendation</div>
+    </div>
+
+    <main class="container">
+        <h1>Pathway Assessment</h1>
+        
+        <div class="preamble-content">
+            <h2>Selecting Your Threat Forecasting Pathway</h2>
+            
+            <p>Threats to conservation features are not spatially or temporally uniform, and effective planning depends on forecasts that identify where and when future pressures are most likely to occur. The first step in developing a conversion threat forecast is determining which modeling pathway is most appropriate for your context.</p>
+            
+            <p><strong>Conversion</strong> refers to the complete transformation of one land cover type to another (e.g., forest to agriculture, natural habitat to urban). This represents a categorical change in land use and is the primary threat in many conservation contexts.</p>
+            
+            <p><strong>Degradation</strong> refers to the decline in quality or condition of a land cover type without complete conversion (e.g., forest thinning, habitat fragmentation, loss of ecosystem function). Degradation is often more subtle but can significantly impact conservation values.</p>
+            
+            <p>Your modeling pathway depends on:</p>
+            <ul>
+                <li>Whether you're forecasting <strong>conversion</strong> or <strong>degradation</strong></li>
+                <li>The <strong>spatial scale</strong> of your analysis (global/continental vs. national/regional)</li>
+                <li>Whether you want to extrapolate <strong>historical patterns</strong> or explore <strong>alternative scenarios</strong></li>
+                <li>Your <strong>data availability</strong> and capacity to develop custom models</li>
+            </ul>
+            
+            <p>The following questions will guide you to the most appropriate forecasting approach for your conservation planning needs.</p>
+        </div>
+
+        <div class="navigation">
+            <button class="btn btn-secondary" onclick="window.location.href='index.html'">Back</button>
+            <button class="btn btn-primary" onclick="window.location.href='pathway.html'">Begin Pathway Assessment</button>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>

@@ -1,34 +1,54 @@
 {
   "D1": {
     "action": "Use existing estimate",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Your existing estimate of land cover change is appropriate for your analysis. This approach leverages historical data that accurately reflects future trends. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    "description": "You have an existing estimate of land cover change and historical patterns suggest that past rates of change are a good proxy for future trends. This is the most straightforward approach when you have reliable historical data and expect similar drivers of change to continue. Use your existing estimate as the demand input for your model. Ensure the estimate covers your full study period and accounts for any known policy changes or development plans that might alter future rates."
   },
   "D2": {
     "action": "Use jurisdictional estimates from IPCC RCP scenarios",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. IPCC Representative Concentration Pathway (RCP) scenarios provide standardized projections for future land use change. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. These scenarios account for different climate and socioeconomic futures."
+    "description": "While you have an existing estimate, past rates of change may not accurately reflect future trends due to changing drivers, policies, or socioeconomic conditions. IPCC Representative Concentration Pathway (RCP) scenarios provide standardized, globally consistent projections of future land use change based on different climate and development pathways (RCP 2.6, 4.5, 6.0, 8.5). These scenarios integrate climate models with socioeconomic assumptions and can be downscaled to your jurisdiction. This approach is particularly useful when modeling long-term change (2050-2100) or exploring alternative futures."
   },
   "D3": {
     "action": "Use a local/regional land cover map to estimate rates of change",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Local or regional land cover maps provide detailed, context-specific information about historical change patterns. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. This approach offers higher accuracy for your specific area of interest."
+    "description": "You have access to multi-temporal land cover maps for your region. Calculate historical rates of change by analyzing transitions between land cover classes across time periods. This empirical approach provides region-specific estimates that reflect local drivers and patterns. Analyze at least two time periods (preferably 3+) to establish trends. Consider whether recent rates should be weighted more heavily than older data, and account for any anomalous periods (e.g., policy changes, extreme events). The derived rates can be extrapolated forward or adjusted based on expected future conditions."
   },
   "D4": {
     "action": "Use a global land cover map to estimate rates of change",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Global land cover datasets provide consistent, worldwide coverage when local data is unavailable. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. While less detailed than regional maps, they offer valuable baseline information."
+    "description": "Without local land cover maps, global datasets (e.g., ESA CCI, MODIS, Copernicus) provide the best available information for estimating demand. These products offer consistent, multi-temporal coverage but at coarser spatial resolution (typically 30m-1km). Calculate rates of change for your study area from these global products, recognizing that accuracy may be lower than regional datasets, particularly for complex landscapes or small patches. Consider validating estimates against any available ground truth data or expert knowledge about your region."
   },
   "V1": {
     "action": "Use existing vulnerability map",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Your existing vulnerability map is suitable for identifying areas at risk of land cover change. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. This map can be directly integrated into your analysis workflow."
+    "description": "You have an existing gridded vulnerability or conversion risk map for your study area. This map should represent the spatial probability or susceptibility of each location to land cover change. Ensure the map is at an appropriate spatial resolution for your analysis and covers your full study area. The map values should be normalized (e.g., 0-1 scale) to represent relative vulnerability. This existing map will be used directly to allocate demand spatially across your landscape."
   },
   "V2": {
     "action": "Create a custom vulnerability map based on expert knowledge of drivers of future change",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Expert knowledge of future change drivers allows for a forward-looking vulnerability assessment. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit. This approach incorporates anticipated changes in land use pressures and socioeconomic factors."
+    "description": "Past land cover change patterns are not a reliable indicator of future vulnerability due to changing drivers, new policies, or shifting socioeconomic conditions. You'll need to create a custom vulnerability map by identifying and mapping the key drivers of future change. This typically involves: (1) identifying relevant biophysical factors (slope, soil, climate), accessibility factors (roads, markets), and socioeconomic factors (population, development zones), (2) obtaining spatial data layers for each factor, (3) combining factors using expert weights, multi-criteria analysis, or statistical models, and (4) validating the resulting vulnerability map against known patterns or expert knowledge."
   },
   "V3": {
     "action": "Use a local/regional land cover map",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Local or regional land cover maps can be analyzed to identify patterns of historical change as a proxy for vulnerability. Sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. This method assumes that areas of past change are vulnerable to future change."
+    "description": "You have multi-temporal regional land cover maps and past patterns of change are expected to continue. Use these maps to create a vulnerability surface based on historical change patterns. Areas that experienced change in the past are assumed to be more vulnerable to future change. Methods include: (1) creating a binary change/no-change map and using distance to past change as a vulnerability indicator, (2) calculating change frequency if multiple time periods are available, or (3) using logistic regression or machine learning to model the relationship between past change and environmental/socioeconomic variables, then projecting this relationship forward."
   },
   "V4": {
     "action": "Use a global land cover map",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Global land cover datasets provide broad-scale patterns of change that can inform vulnerability assessment. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. While less precise than local data, they offer consistent global coverage."
+    "description": "Without regional land cover maps, global datasets provide the best available information for vulnerability assessment. Use multi-temporal global land cover products to identify historical change patterns in your study area. While coarser resolution may miss fine-scale patterns, global products can reveal broad trends in where change has occurred. Extract change patterns for your region and use these as a proxy for future vulnerability, recognizing the limitations in spatial detail. Consider supplementing with globally available driver data (e.g., accessibility surfaces, population density) to refine the vulnerability assessment."
+  },
+  "P1": {
+    "action": "Use Global Conversion Risk Index",
+    "description": "You are modeling degradation where past patterns are not a good proxy for future risk. The Global Conversion Risk Index provides a pre-computed assessment of conversion pressure based on multiple drivers including accessibility, population pressure, agricultural suitability, and protected area coverage. This index is available globally at moderate resolution and can be used directly in your analysis without requiring custom modeling. It represents areas at risk of future conversion based on current conditions and trends."
+  },
+  "P2": {
+    "action": "Use Global Human Modification Forecast",
+    "description": "You are modeling degradation where past patterns provide a reliable indicator of future risk. The Global Human Modification (gHM) dataset quantifies the cumulative human pressure on terrestrial ecosystems. Forecast versions project future human modification based on continuation of historical trends. This product is particularly useful for degradation modeling as it captures gradual intensification of human impacts rather than categorical land cover change. Use the forecast gHM as a proxy for future degradation risk in your study area."
+  },
+  "P3": {
+    "action": "Create a custom conversion risk forecast",
+    "description": "Based on your responses, you need to create a custom conversion risk forecast for your national or regional area. This approach allows for tailored modeling specific to your region's unique characteristics and can incorporate local data, expert knowledge, and region-specific drivers of change. The next sections will guide you through determining the appropriate demand and vulnerability assessment methods to build your custom forecast. Click 'Continue' to proceed with the demand assessment."
+  },
+  "P4": {
+    "action": "Use a global map based on past land cover change",
+    "description": "You are modeling conversion at global or continental scale and want to assume historical patterns will continue. Use global land cover change products (e.g., ESA CCI Land Cover, Hansen Global Forest Change) to identify where conversion has occurred historically. These patterns can be extrapolated forward to project future conversion risk. This approach works best when drivers of change are expected to remain relatively stable and when you need consistent, wall-to-wall coverage across large areas. The resulting projections represent a 'business as usual' scenario based on continuation of past trends."
+  },
+  "P5": {
+    "action": "Use a global map driven by IPCC RCP scenarios",
+    "description": "You are modeling conversion at global or continental scale and want to explore alternative future scenarios. Use land use projections from Integrated Assessment Models (IAMs) that implement IPCC RCP scenarios (e.g., IMAGE, AIM, MESSAGE). These models project future land use based on different assumptions about climate policy, population growth, economic development, and technological change. Products like the Land Use Harmonization (LUH2) dataset provide spatially explicit projections of cropland, pasture, and urban expansion under different RCP scenarios. This approach allows you to assess conversion risk under multiple plausible futures rather than a single trajectory."
   }
 }

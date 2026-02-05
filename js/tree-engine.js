@@ -1,5 +1,6 @@
 class TreeEngine {
-    constructor(treeType, dataPath) {
+    constructor(containerId, dataPath, treeType) {
+        this.containerId = containerId;
         this.treeType = treeType;
         this.dataPath = dataPath;
         this.treeData = null;
@@ -13,7 +14,7 @@ class TreeEngine {
     async init() {
         console.log('TreeEngine init called for:', this.treeType);
         
-        this.container = document.getElementById('tree-container');
+        this.container = document.getElementById(this.containerId);
         this.backBtn = document.getElementById('back-btn');
         
         console.log('Container found:', this.container);
@@ -81,18 +82,18 @@ class TreeEngine {
         const buttonContainer = document.createElement('div');
         buttonContainer.className = 'button-container';
         
-        const yesBtn = document.createElement('button');
-        yesBtn.className = 'btn btn-primary';
-        yesBtn.textContent = 'Yes';
-        yesBtn.addEventListener('click', () => this.handleAnswer('yes'));
+        // Get all possible answer keys from the current node (excluding 'question')
+        const answerKeys = Object.keys(this.currentNode).filter(key => key !== 'question');
         
-        const noBtn = document.createElement('button');
-        noBtn.className = 'btn btn-primary';
-        noBtn.textContent = 'No';
-        noBtn.addEventListener('click', () => this.handleAnswer('no'));
-        
-        buttonContainer.appendChild(yesBtn);
-        buttonContainer.appendChild(noBtn);
+        // Create a button for each answer option
+        answerKeys.forEach(answerKey => {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-primary';
+            // Capitalize first letter and format the button text
+            btn.textContent = answerKey.charAt(0).toUpperCase() + answerKey.slice(1).replace(/\//g, ' / ');
+            btn.addEventListener('click', () => this.handleAnswer(answerKey));
+            buttonContainer.appendChild(btn);
+        });
         
         questionCard.appendChild(questionText);
         questionCard.appendChild(buttonContainer);
@@ -113,13 +114,11 @@ class TreeEngine {
             answer: answer
         });
         
-        // Move to next node
-        if (answer === 'yes' && this.currentNode.yes) {
-            this.currentNode = this.currentNode.yes;
-        } else if (answer === 'no' && this.currentNode.no) {
-            this.currentNode = this.currentNode.no;
+        // Move to next node using the answer as the key
+        if (this.currentNode[answer]) {
+            this.currentNode = this.currentNode[answer];
         } else {
-            console.error('Invalid answer or missing node');
+            console.error('Invalid answer or missing node:', answer);
             return;
         }
         
@@ -148,7 +147,19 @@ class TreeEngine {
         sessionStorage.setItem(`${this.treeType}Result`, outcome.id);
         sessionStorage.setItem(`${this.treeType}Path`, JSON.stringify(this.path));
         
-        // Redirect to result page
-        window.location.href = `result.html?tree=${this.treeType}&id=${outcome.id}`;
+        // Handle routing based on tree type and outcome
+        if (this.treeType === 'pathway') {
+            // P1, P2, P4, P5 go directly to recommendations
+            // P3 shows result page then continues to demand assessment
+            if (outcome.id === 'P3') {
+                window.location.href = `result.html?tree=${this.treeType}&id=${outcome.id}`;
+            } else {
+                // Skip demand and vulnerability, go straight to recommendations
+                window.location.href = 'recommendation.html';
+            }
+        } else {
+            // Normal flow for demand and vulnerability trees
+            window.location.href = `result.html?tree=${this.treeType}&id=${outcome.id}`;
+        }
     }
 }

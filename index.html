@@ -18,20 +18,37 @@
         <h1>Land Cover Change Decision Tool</h1>
         
         <div class="content">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h2>Welcome to the Conversion Threat Forecasting Decision Tool</h2>
             
-            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <p>Conservation resources are inherently limited, necessitating their efficient allocation to maximize impact. Conservation planning is increasingly proactive, seeking to anticipate future change rather than react to losses after they occur. Among the key factors influencing conservation decisions—such as economic costs, feasibility of protection, and the distribution of biodiversity—the level of threat to conservation features plays a crucial role. Areas facing imminent habitat loss or degradation may be prioritized for immediate action to prevent irreversible damage.</p>
             
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+            <p>Incorporating future threats into conservation decision-making requires being explicit about your assumptions regarding the evolution of threats in time and their distribution in space. <strong>Ex-ante threat assessments</strong>—those conducted prior to land-use change—provide forecasts of the location, timing, and intensity of factors contributing to biodiversity loss. These assessments may be based on statistical extrapolations of historical trends, development scenarios, or spatially explicit models.</p>
             
-            <p>This tool will guide you through a series of questions to help determine the most appropriate methods and software for your land cover change analysis.</p>
+            <p>This decision tool guides you through selecting the most appropriate approach for your conversion threat forecast based on three key considerations:</p>
+            
+            <ul>
+                <li><strong>Pathway Selection:</strong> Determining your modeling approach based on whether you're forecasting conversion or degradation, and at what spatial scale</li>
+                <li><strong>Demand Assessment:</strong> Quantifying how much land cover change is expected (the total area or rate of change)</li>
+                <li><strong>Vulnerability/Allocation Assessment:</strong> Identifying where land cover change is most likely to occur (spatial distribution of threat)</li>
+            </ul>
+            
+            <p>By answering a series of questions about your data availability, study area, and modeling objectives, you'll receive tailored recommendations for forecasting approaches and software tools that best fit your conservation planning needs.</p>
         </div>
 
         <div class="navigation">
-            <button class="btn btn-primary" onclick="window.location.href='demand-preamble.html'">Begin Assessment</button>
+            <button class="btn btn-primary" onclick="window.location.href='pathway-preamble.html'">Begin Assessment</button>
         </div>
     </main>
 
     <script src="js/app.js"></script>
+    <script>
+        // Clear previous assessment data when starting fresh
+        sessionStorage.removeItem('pathwayResult');
+        sessionStorage.removeItem('pathwayPath');
+        sessionStorage.removeItem('demandResult');
+        sessionStorage.removeItem('demandPath');
+        sessionStorage.removeItem('vulnerabilityResult');
+        sessionStorage.removeItem('vulnerabilityPath');
+    </script>
 </body>
 </html>
