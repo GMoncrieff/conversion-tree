@@ -84,17 +84,28 @@
                 const recommendations = findRecommendation(recommendationData, pathwayResult, vulnerabilityResult, demandResult);
                 console.log('Found Recommendations:', recommendations);
                 
-                // Display explanation if available
-                if (recommendations.explanation) {
-                    const explanationEl = document.getElementById('recommendation-explanation');
-                    let html = `<p>${recommendations.explanation}</p>`;
+                // Display explanation and limitations
+                const explanationEl = document.getElementById('recommendation-explanation');
+                console.log('Explanation element:', explanationEl);
+                
+                if (recommendations.explanation || recommendations.limitations) {
+                    let html = '';
+                    
+                    if (recommendations.explanation) {
+                        html += `<p>${recommendations.explanation}</p>`;
+                        console.log('Added explanation:', recommendations.explanation);
+                    }
                     
                     // Add limitations if available
                     if (recommendations.limitations) {
                         html += `<div class="recommendation-limitations"><strong>Limitations:</strong> ${recommendations.limitations}</div>`;
+                        console.log('Added limitations:', recommendations.limitations);
                     }
                     
                     explanationEl.innerHTML = html;
+                    console.log('Final HTML:', html);
+                } else {
+                    console.warn('No explanation or limitations found in recommendations');
                 }
                 
                 displayRecommendations(recommendations, explanationsData);

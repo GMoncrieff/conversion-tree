@@ -292,4 +292,10 @@
         "pathway": ["P5"]
       },
       "recommend_simple": [
-        "Chen 2020 / Demeter
+        "Chen 2020 / Demeter"
+      ],
+      "explanation": "You are modeling conversion at global or continental scale and want to explore scenario-based futures rather than simply extrapolating past trends. The Chen 2020/Demeter dataset provides ready-to-use land use projections under multiple IPCC RCP scenarios (2.6, 4.5, 6.0, 8.5), allowing you to assess how land use might evolve under different climate policy and socioeconomic pathways. This approach is particularly valuable for long-term planning (2050-2100), climate change impact assessments, or exploring the range of plausible futures. No custom modeling is required.",
+      "limitations": "Coarse spatial resolution (0.25°) may not capture local-scale processes or fine-scale heterogeneity. Scenarios are based on global socioeconomic models that may not reflect regional or local dynamics. Projections are highly uncertain, particularly for distant time horizons (2100), and should be interpreted as plausible futures rather than predictions."
+    }
+  ]
+}
