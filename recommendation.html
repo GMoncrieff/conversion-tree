@@ -87,7 +87,14 @@
                 // Display explanation if available
                 if (recommendations.explanation) {
                     const explanationEl = document.getElementById('recommendation-explanation');
-                    explanationEl.innerHTML = `<p>${recommendations.explanation}</p>`;
+                    let html = `<p>${recommendations.explanation}</p>`;
+                    
+                    // Add limitations if available
+                    if (recommendations.limitations) {
+                        html += `<div class="recommendation-limitations"><strong>Limitations:</strong> ${recommendations.limitations}</div>`;
+                    }
+                    
+                    explanationEl.innerHTML = html;
                 }
                 
                 displayRecommendations(recommendations, explanationsData);
@@ -178,12 +185,13 @@
                         simple: rule.recommend_simple || [],
                         intermediate: rule.recommend_intermediate || [],
                         advanced: rule.recommend_advanced || [],
-                        explanation: rule.explanation || ''
+                        explanation: rule.explanation || '',
+                        limitations: rule.limitations || ''
                     };
                 }
             }
             console.log('No matching rule found');
-            return { simple: [], intermediate: [], advanced: [], explanation: '' };
+            return { simple: [], intermediate: [], advanced: [], explanation: '', limitations: '' };
         }
 
         function displayRecommendations(recommendations, explanations) {
